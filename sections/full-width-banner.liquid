@@ -6,7 +6,7 @@
     color: {{ section.settings.text_color }};
   }
   .section-{{ section.id }} .section-full-width-banner__title {
-    font-size: {{ section.settings.text_size }}px;
+    font-size: {{ section.settings.text_size_mobile }}px;
     text-transform: {{ section.settings.text_case }};
   }
   .section-{{ section.id }} {
@@ -15,6 +15,9 @@
     padding-block-end: calc(var(--section-spacing-unit-mobile) * {{ section.settings.spacing_bottom_mobile }}) !important;
   }
   @media screen and (min-width: 750px) {
+    .section-{{ section.id }} .section-full-width-banner__title {
+      font-size: {{ section.settings.text_size }}px;
+    }
     .section-{{ section.id }} {
       --full-width-banner-height: {{ section.settings.full_width_banner_height | default: '50' | append: 'vh' }};
       padding-block-start: calc(var(--section-spacing-unit-desktop) * {{ section.settings.spacing_top_desktop }}) !important;
@@ -347,8 +350,18 @@
       "max": 64,
       "step": 1,
       "unit": "px",
-      "label": "Text size",
+      "label": "Text size desktop",
       "default": 32
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size mobile",
+      "default": 24
     },
     {
       "type": "select",

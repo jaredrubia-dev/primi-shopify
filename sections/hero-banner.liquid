@@ -149,7 +149,14 @@
               {%- endif -%}
 
               {%- if block.settings.title != blank -%}
-                <h3 class="hero__title" style="color: {{ block.settings.color_scheme_text_heading }};">
+                <style>
+                  @media screen and (max-width: 750px) {
+                    .hero__title {
+                      font-size: {{ block.settings.heading_size_mobile }}px!important;
+                    }
+                  }
+                </style>
+                <h3 class="hero__title" style="color: {{ block.settings.color_scheme_text_heading }};font-size: {{ block.settings.heading_size }}px; text-transform: {{ block.settings.heading_case }}">
                   {{- block.settings.title | escape -}}
                 </h3>
               {%- endif -%}
@@ -353,18 +360,62 @@
         },
         {
           "type": "header",
-          "content": "t:sections.global.settings.header_color_scheme.content"
+          "content": "Color scheme and Text format"
         },
         {
           "type": "color",
           "id": "color_scheme_text_heading",
-          "label": "Text",
+          "label": "Heading",
           "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "min": 12,
+          "max": 64,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading size desktop",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "heading_size_mobile",
+          "min": 12,
+          "max": 64,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading size mobile",
+          "default": 40
+        },
+        {
+          "type": "select",
+          "id": "heading_case",
+          "label": "Heading Case",
+          "options": [
+            {
+              "value": "unset",
+              "label": "Default"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize"
+            },
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            },
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            }
+          ],
+          "default": "uppercase"
         },
         {
           "type": "color",
           "id": "color_scheme_text_description",
-          "label": "Text",
+          "label": "Description",
           "default": "#000000"
         },
         {
