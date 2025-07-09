@@ -433,7 +433,7 @@
     {%- endunless -%}
   </div>
 
-  <a href="{{- product_ref.url -}}" class="card-product__content focus-inset">
+  <a href="{{- product_ref.url -}}" class="card-product__content focus-inset c-text-{{ card_text_layout }}">
     <h6 class="card-product__title">
       {%- if product_ref and product_ref != empty -%}
         {{- product_ref.title | escape -}}
@@ -442,6 +442,13 @@
       {%- endif -%}
     </h6>
     {%- render 'price', product_ref: product_ref, price_class: 'card-product__price' -%}
+    {%- for tag in product_ref.tags -%}
+      {%- if tag contains 'label' -%}
+        {% assign class =  tag | split: 'label:' | last %}
+        <span class="c-call-out {{ class | handleize }}">{{ tag | split: 'label:' | last }}</span>
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
   </a>
 
   {%- unless hide_actions -%}

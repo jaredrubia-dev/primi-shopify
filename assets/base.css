@@ -3305,7 +3305,14 @@ html.js .animation-none {
 }
 
 .swiper-pagination .swiper-pagination-bullet {
-  background: #fff!important;
+  background: unset!important;
   width: 10px;
   height: 10px;
+  border: 1px solid #fff;
+  opacity: 1;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background: #fff!important;
+  border: unset!important;
 }

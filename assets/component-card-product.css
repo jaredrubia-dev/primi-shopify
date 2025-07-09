@@ -332,6 +332,21 @@ input:disabled + .card-product__swatch {
   padding: 1.2rem .8rem 0;
 }
 
+.card-product__content.c-text-left {
+  text-align: left!important;
+}
+
+.card-product__content.c-text-right {
+  text-align: right!important;
+}
+
+.card-product__content .c-call-out {
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: block;
+  font-size: 14px;
+}
+
 .card-product__title {
   margin: 0 0 .8rem;
 }
