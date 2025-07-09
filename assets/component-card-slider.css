@@ -5,6 +5,17 @@ card-slider {
 html .card-slider {
   overflow: visible;
 }
+html .container .c-set-relative {
+  position: relative;
+}
+
+html .container .c-set-relative .card-slider.c-hide-arrow {
+  position: unset!important;
+}
+
+html .card-slider.c-hide-arrow {
+  padding-bottom: 15px;
+}
 
 .card-slider__buttons {
   position: static;

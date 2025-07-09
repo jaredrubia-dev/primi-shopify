@@ -21,9 +21,27 @@
     {{ section.settings.padding_vertical_desktop }}
     {{ section.settings.padding_vertical_mobile }}
     {{ section.settings.layout }}
-    {{ section.settings.color_scheme_text }}
     {{ section.settings.color_scheme_background }}
   {%- endcapture -%}
+
+  {% style %}
+    .section-{{ section.id }} .swiper-pagination {
+      bottom: -25px!important;
+    }
+    .section-{{ section.id }} .section__head .section__title {
+      color: {{ section.settings.title_color }}!important;
+      font-size: {{ section.settings.title_size }}px;
+      text-align: {{ section.settings.title_layout }};
+      text-transform: {{ section.settings.title_case }};
+    }
+    .section-{{ section.id }} .swiper-pagination .swiper-pagination-bullet {
+      border: 1px solid {{ section.settings.title_color }};
+      background: unset;
+    }
+    .section-{{ section.id }} .swiper-pagination .swiper-pagination-bullet-active {
+      background: {{ section.settings.title_color }}!important;
+    }
+  {%  endstyle %}
 
   {% if section.blocks.size == 1 %}
     {% style %}
@@ -65,9 +83,9 @@
         endif
       %}
 
-      <div class="section__body">
+      <div class="section__body {% if section.settings.show_arrow == false %}c-set-relative{%  endif %}">
         <card-slider
-          class="swiper card-slider"
+          class="swiper card-slider {% if section.settings.show_arrow == false %} c-hide-arrow {% endif %}"
           data-swiper-options='{
             "spaceBetweenDesktop": {{ section.settings.gap_between_desktop }},
             "spaceBetweenMobile": {{ section.settings.gap_between_mobile }},
@@ -87,7 +105,9 @@
               </div>
             {%- endfor -%}
           </div>
-
+          {% if section.settings.show_arrow == false %}
+            <div class="swiper-pagination card-slider__swiper-pagination">&nbsp</div>
+          {% else %}
           <div class="swiper-buttons small-hide svg-color-inherit card-slider__buttons no-js-hidden {{ section.settings.button_style }}">
             <button class="swiper-button swiper-button--prev">
               {%- render 'icon-arrow-end-small' -%}
@@ -96,7 +116,7 @@
               {%- render 'icon-arrow-end-small' -%}
             </button>
           </div>
-
+          {% endif %}
         </card-slider>
       </div>
       <div class="section__foot">{{ section_button | replace_first: 'custom_class' }}</div>
@@ -163,6 +183,12 @@
       "content": "t:sections.global.settings.header_layout.content"
     },
     {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show slider arrow",
+      "default": true
+    },
+    {
       "type": "select",
       "id": "layout",
       "label": "t:sections.global.settings.layout.label",
@@ -215,27 +241,67 @@
     },
     {
       "type": "header",
-      "content": "t:sections.global.settings.header_color_scheme.content"
+      "content": "Color scheme and Text format"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 12,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 32
     },
     {
       "type": "select",
-      "id": "color_scheme_text",
-      "label": "t:sections.global.settings.color_scheme_text.label",
+      "id": "title_layout",
+      "label": "Title Layout",
       "options": [
         {
-          "value": "color-text-primary",
-          "label": "t:settings_schema.colors.settings.color_text_primary.label"
+          "value": "left",
+          "label": "Left"
         },
         {
-          "value": "color-text-secondary",
-          "label": "t:settings_schema.colors.settings.color_text_secondary.label"
+          "value": "center",
+          "label": "Center"
         },
         {
-          "value": "color-text-inverse",
-          "label": "t:settings_schema.colors.settings.color_text_inverse.label"
+          "value": "Right",
+          "label": "Right"
         }
       ],
-      "default": "color-text-primary"
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "title_case",
+      "label": "Title Case",
+      "options": [
+        {
+          "value": "unset",
+          "label": "Default"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "uppercase"
     },
     {
       "type": "select",

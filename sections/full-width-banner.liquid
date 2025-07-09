@@ -1,6 +1,14 @@
 {{- 'section-full-width-banner.css' | asset_url | stylesheet_tag -}}
 
 {% style %}
+  .section-{{ section.id }} .section-full-width-banner__subtitle,
+  .section-{{ section.id }} .section-full-width-banner__title {
+    color: {{ section.settings.text_color }};
+  }
+  .section-{{ section.id }} .section-full-width-banner__title {
+    font-size: {{ section.settings.text_size }}px;
+    text-transform: {{ section.settings.text_case }};
+  }
   .section-{{ section.id }} {
     --full-width-banner-mobile-height: {{ section.settings.full_width_banner_mobile_height | default: '100' | append: 'vh' }};
     padding-block-start: calc(var(--section-spacing-unit-mobile) * {{ section.settings.spacing_top_mobile }}) !important;
@@ -40,7 +48,7 @@
 <section class='section-{{- section.id -}} {% if enable_transparent_header %} header-is-transparent{% endif %}'>
   <div class='section-full-width-banner {{ section.settings.banner_layout }} js-animation-fade-in'>
     {%- capture inner_settings_classes -%}
-      {{ section.settings.content_position_horizontal }} {{ section.settings.content_position_vertical }} {{ section.settings.color_scheme_text }} {{ section.settings.color_scheme_background }}
+      {{ section.settings.content_position_horizontal }} {{ section.settings.content_position_vertical }} {{ section.settings.color_scheme_background }}
     {%- endcapture -%}
 
     {%- liquid
@@ -327,24 +335,44 @@
       "content": "t:sections.global.settings.header_color_scheme.content"
     },
     {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 32
+    },
+    {
       "type": "select",
-      "id": "color_scheme_text",
-      "label": "t:sections.global.settings.color_scheme_text.label",
+      "id": "text_case",
+      "label": "Text Case",
       "options": [
         {
-          "value": "text-colors-default",
-          "label": "t:sections.global.settings.color_scheme_text.options.default.label"
+          "value": "unset",
+          "label": "Default"
         },
         {
-          "value": "text-colors-secondary",
-          "label": "t:sections.global.settings.color_scheme_text.options.secondary.label"
+          "value": "capitalize",
+          "label": "Capitalize"
         },
         {
-          "value": "text-colors-inverse",
-          "label": "t:sections.global.settings.color_scheme_text.options.inverse.label"
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
         }
       ],
-      "default": "text-colors-inverse"
+      "default": "uppercase"
     },
     {
       "type": "select",

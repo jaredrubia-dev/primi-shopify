@@ -34,6 +34,10 @@ if (!customElements.get('card-slider')) {
           nextEl: '.swiper-button--next',
           prevEl: '.swiper-button--prev',
         },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
         breakpoints: {
           750: {
             slidesPerView: swiperOptions.slidesPerViewDesktop || 3,
