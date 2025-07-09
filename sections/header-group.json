@@ -1,0 +1,227 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "text_slide_9EEnag": {
+          "type": "text-slide",
+          "settings": {
+            "content": "<p>NEW ARRIVALS JUST LANDED</p>",
+            "dropdown_cards": false,
+            "color_scheme_background_dropdown": "background-colors-default",
+            "color_scheme_text_dropdown": "text-colors-default",
+            "card_item_1__title": "",
+            "card_item_1__content": "",
+            "card_item_1__button_text": "",
+            "card_item_1__button_url": "shopify://collections/new-in",
+            "card_item_2__title": "",
+            "card_item_2__content": "",
+            "card_item_2__button_text": "",
+            "card_item_2__button_url": "",
+            "card_item_3__title": "",
+            "card_item_3__content": "",
+            "card_item_3__button_text": "",
+            "card_item_3__button_url": "",
+            "countdown": false,
+            "timer_year": 2024,
+            "timer_month": "01",
+            "timer_day": 1,
+            "timer_hour": 0,
+            "timer_minute": 0,
+            "timer_extend": 0,
+            "timer_end_message": "Sale has ended",
+            "show_timer_days": true,
+            "show_timer_hours": true,
+            "show_timer_minutes": true,
+            "show_timer_seconds": true
+          }
+        },
+        "text_slide_miwycj": {
+          "type": "text-slide",
+          "settings": {
+            "content": "<p>FREE AUSTRALIAN SHIPPING OVER $150</p>",
+            "dropdown_cards": false,
+            "color_scheme_background_dropdown": "background-colors-default",
+            "color_scheme_text_dropdown": "text-colors-default",
+            "card_item_1__title": "",
+            "card_item_1__content": "",
+            "card_item_1__button_text": "",
+            "card_item_1__button_url": "shopify://pages/shipping",
+            "card_item_2__title": "",
+            "card_item_2__content": "",
+            "card_item_2__button_text": "",
+            "card_item_2__button_url": "",
+            "card_item_3__title": "",
+            "card_item_3__content": "",
+            "card_item_3__button_text": "",
+            "card_item_3__button_url": "",
+            "countdown": false,
+            "timer_year": 2024,
+            "timer_month": "01",
+            "timer_day": 1,
+            "timer_hour": 0,
+            "timer_minute": 0,
+            "timer_extend": 0,
+            "timer_end_message": "Sale has ended",
+            "show_timer_days": true,
+            "show_timer_hours": true,
+            "show_timer_minutes": true,
+            "show_timer_seconds": true
+          }
+        },
+        "cee0c4f6-5546-43a3-bfc3-2f3afa36d9d5": {
+          "type": "text-slide",
+          "disabled": true,
+          "settings": {
+            "content": "<p>NEW ARRIVALS JUST LANDED</p>",
+            "dropdown_cards": false,
+            "color_scheme_background_dropdown": "background-colors-default",
+            "color_scheme_text_dropdown": "text-colors-default",
+            "card_item_1__title": "",
+            "card_item_1__content": "",
+            "card_item_1__button_text": "",
+            "card_item_1__button_url": "",
+            "card_item_2__title": "",
+            "card_item_2__content": "",
+            "card_item_2__button_text": "",
+            "card_item_2__button_url": "",
+            "card_item_3__title": "",
+            "card_item_3__content": "",
+            "card_item_3__button_text": "",
+            "card_item_3__button_url": "",
+            "countdown": false,
+            "timer_year": 2023,
+            "timer_month": "01",
+            "timer_day": 1,
+            "timer_hour": 0,
+            "timer_minute": 0,
+            "timer_extend": 0,
+            "timer_end_message": "Sale has ended",
+            "show_timer_days": true,
+            "show_timer_hours": true,
+            "show_timer_minutes": true,
+            "show_timer_seconds": true
+          }
+        },
+        "5e0cad2e-d931-416e-ac29-51a4a683ade2": {
+          "type": "text-slide",
+          "disabled": true,
+          "settings": {
+            "content": "<p>Make an announcement here</p>",
+            "dropdown_cards": false,
+            "color_scheme_background_dropdown": "background-colors-default",
+            "color_scheme_text_dropdown": "text-colors-default",
+            "card_item_1__title": "",
+            "card_item_1__content": "",
+            "card_item_1__button_text": "",
+            "card_item_1__button_url": "",
+            "card_item_2__title": "",
+            "card_item_2__content": "",
+            "card_item_2__button_text": "",
+            "card_item_2__button_url": "",
+            "card_item_3__title": "",
+            "card_item_3__content": "",
+            "card_item_3__button_text": "",
+            "card_item_3__button_url": "",
+            "countdown": false,
+            "timer_year": 2023,
+            "timer_month": "01",
+            "timer_day": 1,
+            "timer_hour": 0,
+            "timer_minute": 0,
+            "timer_extend": 0,
+            "timer_end_message": "Sale has ended",
+            "show_timer_days": true,
+            "show_timer_hours": true,
+            "show_timer_minutes": true,
+            "show_timer_seconds": true
+          }
+        }
+      },
+      "block_order": [
+        "text_slide_9EEnag",
+        "text_slide_miwycj",
+        "cee0c4f6-5546-43a3-bfc3-2f3afa36d9d5",
+        "5e0cad2e-d931-416e-ac29-51a4a683ade2"
+      ],
+      "settings": {
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "slider_autoplay_interval": 5
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "b24138db-2e60-43bf-a7d4-d853a4298828": {
+          "type": "image-link-text",
+          "settings": {
+            "menu_link_title": "",
+            "url": "",
+            "title": ""
+          }
+        },
+        "37cd2d1d-2b56-4ed5-93d6-934e97ab2ca2": {
+          "type": "image-link-text",
+          "settings": {
+            "menu_link_title": "",
+            "url": "",
+            "title": ""
+          }
+        },
+        "917863eb-72c8-40ed-8666-395f53855d53": {
+          "type": "image-link-text",
+          "settings": {
+            "menu_link_title": "",
+            "url": "",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "b24138db-2e60-43bf-a7d4-d853a4298828",
+        "37cd2d1d-2b56-4ed5-93d6-934e97ab2ca2",
+        "917863eb-72c8-40ed-8666-395f53855d53"
+      ],
+      "settings": {
+        "fullwidth": true,
+        "sticky": true,
+        "color_scheme_background": "background-colors-default",
+        "color_scheme_text": "text-colors-default",
+        "layout": "",
+        "transparent_header_on_scroll": false,
+        "transparent_header_bottom_border": true,
+        "drawer_layer": true,
+        "logo_svg_code": "",
+        "logo_width": 100,
+        "logo_width_mobile": 60,
+        "logo_font_size": 1.5,
+        "menu": "main-menu",
+        "menu_mobile": "",
+        "submenu": "",
+        "menu_column_count": 5,
+        "country_drawer_header": true,
+        "country_drawer_navigation_menu": true,
+        "first_additional_link_title": "",
+        "first_additional_link_url": "",
+        "second_additional_link_title": "",
+        "second_additional_link_url": ""
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

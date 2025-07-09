@@ -1,0 +1,17 @@
+# Files excluded from Shopify cli
+config/*_data.json
+config/*.json
+locales/*.json
+sections/**/*.json
+sections/*.json
+templates/**/*.json
+templates/*.json
+ 
+# Global-e files
+package.json
+package-lock.json
+node_modules
+package.json 
+tailwind.config.ts 
+*.config.ts
+tsconfig.json

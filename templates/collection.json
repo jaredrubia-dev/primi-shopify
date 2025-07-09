@@ -1,0 +1,77 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "enable_transparent_header": true,
+        "section_height": 60,
+        "banner_layout": "banner--full",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default"
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "96d74506-d90d-4c41-b78f-4d67853600e5": {
+          "type": "text-card",
+          "settings": {
+            "color_scheme_text": "color-text-primary",
+            "color_scheme_background": "background-colors-default",
+            "position": 7,
+            "title": "\"So soft - I was not expecting the material of this top to be as soft as it is. It is perfect for layering in winter and I have worn it regularly since receiving it, including to yoga and pilates\"\n\nA Osmond",
+            "text_size": ".6",
+            "button_text": "View All",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "96d74506-d90d-4c41-b78f-4d67853600e5"
+      ],
+      "settings": {
+        "color_scheme_text": "color-text-primary",
+        "color_scheme_background": "background-colors-default",
+        "enable_products_count": true,
+        "enable_sorting": true,
+        "enable_filters": true,
+        "filters_style": "drawer",
+        "sidebar_navigation": "",
+        "column_gap_desktop": 0.2,
+        "column_gap_mobile": 0.2,
+        "products_per_page": 14,
+        "products_per_row_default": "4",
+        "products_per_row_ui": true,
+        "pagination_style": "load_more",
+        "button_style": "button--filled"
+      }
+    },
+    "f8303da3-c3cb-4a90-a63a-7a628615aa6f": {
+      "type": "seo-content",
+      "settings": {
+        "layout": "boxed",
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "text_size": 1,
+        "title": "Additional long-format copy",
+        "content": "<p>Your chance to shop our signature elevated basics at exclusive markdowns. Designed in Australia and crafted with care, every piece in this collection reflects our commitment to quality, comfort, and considered design. Whether you're refreshing your capsule wardrobe or discovering a new everyday favourite, you’ll find our most-loved styles here, now at rare prices.</p><p>From soft cotton rib tanks and long sleeves to double-layered bodysuits and relaxed knit staples, our sale edit offers thoughtfully made essentials that move with you. We believe that well-made wardrobe foundations should be accessible, and our limited-time sale is the perfect opportunity to invest in premium everyday pieces — without the full price tag..</p>"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main",
+    "f8303da3-c3cb-4a90-a63a-7a628615aa6f"
+  ]
+}
