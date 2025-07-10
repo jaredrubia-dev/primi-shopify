@@ -241,7 +241,7 @@ body {
   min-height: 100%;
   margin: 0;
   line-height: var(--line-height-medium);
-  font-family: var(--font-body-family);
+  font-family: var(--font-light-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
   font-size: var(--font-size-medium);
@@ -555,7 +555,6 @@ h2,
 h3,
 h4,
 h5,
-h6,
 .h1,
 .h2,
 .h3,
@@ -569,11 +568,19 @@ h6,
   word-break: break-word;
 }
 
+h6, .h6 {
+  color: var(--color-heading-text);
+  font-family: var(--font-light-family);
+  font-style: var(--font-heading-style);
+  font-weight: 400;
+  word-break: break-word;
+}
+
 .price span,
 .price__container,
 summary,
 .header__nav-items a {
-  font-weight: 900;
+  font-weight: 400;
 }
 
 h1, .h1 {
@@ -1350,14 +1357,14 @@ deferred-media {
 button.shopify-payment-button__button--unbranded,
 .shopify-payment-button [role='button'],
 #shopify-product-reviews .spr-summary-actions-newreview {
-  min-width: 18rem;
+  /* min-width: 18rem; */
   max-width: 100%;
-  min-height: 5rem;
+  /* min-height: 5rem; */
   display: inline-block;
   text-align: center;
   border: 0;
   border-radius: var(--button-border-radius);
-  padding: 1.6rem 4rem; /* check: 1.8rem 2rem; */
+  padding: 13px 25px 13px; /* check: 1.8rem 2rem; 1.6rem 4rem*/ 
   cursor: pointer;
   font-family: var(--button-font-family);
   font-size: var(--button-font-size);
@@ -1381,12 +1388,12 @@ button.shopify-payment-button__button--unbranded,
 .shopify-payment-button [role='button'],
 #shopify-product-reviews .spr-summary-actions-newreview {
   --button-font-family: var(--font-button-family);
-  --button-font-size: 1.4rem;
+  --button-font-size: 12px;
   --button-line-height: 1.5rem;
   --button-font-weight: var(--font-button-weight);
 }
 .button--uppercase {
-  --button-font-size: 1.2rem;
+  --button-font-size: 12px;
   --button-line-height: 1.5rem;
   --button-font-weight: var(--font-button-weight);
   --button-letter-spacing: 0.2rem;
@@ -1395,12 +1402,12 @@ button.shopify-payment-button__button--unbranded,
 .button--normalcase,
 .button--capitalize,
 .button--lowercase {
-  --button-font-size: 1.4rem;
+  --button-font-size: 12px;
   --button-line-height: 1.15rem;
   --button-font-weight: var(--font-button-weight);
   --button-letter-spacing: normal;
   --button-text-transform: lowercase;
-  padding-block-start: 1.7rem;
+  /* padding-block-start: 1.7rem; */
 }
 .button--capitalize {
   --button-text-transform: capitalize;
@@ -2234,6 +2241,7 @@ dropdown-input.has-error .dropdown__button {
   color: var(--color-heading-text);
   line-height: var(--line-height-medium);
   font-weight: var(--font-weight-normal);
+  font-family: var(--font-light-family);
 }
 
 .price__sale--has-badge {
@@ -2763,8 +2771,8 @@ svg {
   padding-block-end: 0.7rem;
   position: relative;
   inset-block-start: 0.35rem;
-  font-family: var(--font-heading-family);
-  font-size: calc(var(--font-heading-scale) * var(--font-size-static-medium));
+  font-family: var(--font-light-family);
+  font-size: 12px;
   line-height: 1.15;
 }
 

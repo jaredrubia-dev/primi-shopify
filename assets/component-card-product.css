@@ -342,9 +342,11 @@ input:disabled + .card-product__swatch {
 
 .card-product__content .c-call-out {
   text-transform: uppercase;
-  margin-top: 4px;
+  font-family: var(--font-light-family);
+  margin-top: 6px;
   display: block;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .card-product__title {

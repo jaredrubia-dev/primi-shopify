@@ -495,7 +495,7 @@ html.no-js .header__nav-dropdown {
 }
 
 .header__nav-links-item > .header__nav-dropdown-link {
-  font-family: var(--font-heading-family);
+  font-family: var(--font-light-family);
   font-size: var(--font-size-static-small);
   line-height: var(--line-height-small);
   text-transform: var(--dropdown-link-text-transform, uppercase);
