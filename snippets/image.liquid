@@ -36,7 +36,7 @@
   # for mobile images
   assign image_for_mobile = image_for_mobile | default: false
   if image_for_mobile
-    assign max_image_width = 480
+    assign max_image_width = 960
   endif
 
   assign max_image_width = image_url_width | default: max_image_width
