@@ -347,6 +347,7 @@ input:disabled + .card-product__swatch {
   display: block;
   font-size: 12px;
   font-weight: 400;
+  color: var(--color-heading-text);
 }
 
 .card-product__title {

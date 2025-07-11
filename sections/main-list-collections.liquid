@@ -2,9 +2,19 @@
 {{- 'component-card-collection.css' | asset_url | stylesheet_tag -}}
 
 {% style %}
+  .section-{{ section.id }}.c-full-width .container{
+    padding: 0;
+  }
+
   .main-list-collections__grid {
     column-gap: {{ section.settings.column_gap_mobile }}rem;
   }
+
+  .main-list-collections__grid.c-remove-gap {
+    column-gap: 0!important;
+    row-gap: 0!important;
+  }
+
   @media screen and (min-width: 990px) {
     .main-list-collections__grid {
       column-gap: {{ section.settings.column_gap_desktop }}rem;
@@ -28,14 +38,14 @@
   endcapture
 -%}
 
-<section class="main-list-collections color-body-background {{ section_additional_classes | strip }}">
+<section class="section-{{section.id}} main-list-collections color-body-background {{ section_additional_classes | strip }} {% if section.settings.enable_full_width %}c-full-width{% endif %}">
   <div class="container" id="ProductGridContainer">
 
     {%- case section.settings.collections_to_show -%}
 
       {%- when 'all' -%}
         {%- paginate collections by section.settings.collections_per_page -%}
-          <div class="main-list-collections__grid" id="product-grid">
+          <div class="main-list-collections__grid {% if section.settings.remove_gap %}c-remove-gap{% endif %} card-count-{{ section.settings.card_count }}" id="product-grid">
             {%- for collection in collections -%}
               {%- render 'card-collection', collection_ref: collection, class: card_classes, class_without_image: card_classes_no_image -%}
             {%- endfor -%}
@@ -55,7 +65,7 @@
         {%- endpaginate -%}
 
       {%- when 'selected' -%}
-        <div class="main-list-collections__grid" id="product-grid">
+        <div class="main-list-collections__grid {% if section.settings.remove_gap %}c-remove-gap{% endif %} card-count-{{ section.settings.card_count }}" id="product-grid">
           {%- for block in section.blocks -%}
             {%- render 'card-collection', collection_ref: block.settings.collection, class: block.settings.color_scheme_text, title: block.settings.title, image: block.settings.image -%}
           {%- endfor -%}
@@ -72,6 +82,32 @@
     {
       "type": "header",
       "content": "t:sections.main-list-collections.settings.header_collections.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_full_width",
+      "label": "Enable Full Width",
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_gap",
+      "label": "Remove gap"
+    },
+    {
+      "type": "select",
+      "id": "card_count",
+      "label": "Card counts",
+      "options": [
+        {
+          "value": "3",
+          "label": "Three"        
+        },
+        {
+          "value": "4",
+          "label": "Four"        
+        },
+      ],
+      "default": "3"
     },
     {
       "type": "radio",

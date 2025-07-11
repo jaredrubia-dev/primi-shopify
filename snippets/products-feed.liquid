@@ -71,7 +71,13 @@
     {%- endcapture -%}
   {%- endif -%}
 
-  <section class="section overflow-hidden js-animation-fade-in {{ section_additional_classes | strip }}" data-section-id="{{- section.id -}}">
+  {% style %}
+    .section-{{ section.id }} .section__title {
+      font-size: {{ section.settings.heading_size }}px!important;
+    }
+  {% endstyle %}
+
+  <section class="section overflow-hidden js-animation-fade-in section-{{ section.id }} {{ section_additional_classes | strip }}" data-section-id="{{- section.id -}}">
     <div class="container">
 
       {%- if section.settings.title != blank or section_button != blank -%}
@@ -136,7 +142,7 @@
               <div id="{{- block.id -}}" {% if section_blocks.size > 1 %}class="products-feed__tabcontent--{{- section.id -}}"{% endif %}>
                 <div>
                   <{{ element }}
-                    class="swiper card-product-slider"
+                    class="swiper card-product-slider {% if section.settings.slider_arrows == false %}c-padding-bottom-50{% endif %}"
                     data-section-id="{{- section.id -}}"
                     {% if url %}data-url="{{- url -}}"{% endif %}
                     {{ attr }}
@@ -160,16 +166,20 @@
                         {%- endfor -%}
                       {%- endif -%}
                     </div>
+                    
+                    {% if section.settings.slider_arrows == false %}
+                      <div class="swiper-pagination product__swiper-pagination">&nbsp</div>
+                    {% else %}
+                      <div class="swiper-buttons small-hide svg-color-inherit card-product-slider__buttons {{ section_button_style }} no-js-hidden">
+                        <button class="swiper-button swiper-button--prev">
+                          {%- render 'icon-arrow-end-small' -%}
+                        </button>
 
-                    <div class="swiper-buttons small-hide svg-color-inherit card-product-slider__buttons {{ section_button_style }} no-js-hidden">
-                      <button class="swiper-button swiper-button--prev">
-                        {%- render 'icon-arrow-end-small' -%}
-                      </button>
-
-                      <button class="swiper-button swiper-button--next">
-                        {%- render 'icon-arrow-end-small' -%}
-                      </button>
-                    </div>
+                        <button class="swiper-button swiper-button--next">
+                          {%- render 'icon-arrow-end-small' -%}
+                        </button>
+                      </div>
+                    {% endif %}
                   </{{ element }}>
                 </div>
               </div>

@@ -45,6 +45,10 @@ collection-load-more {
     row-gap: 4rem;
   }
 
+  .main-list-collections__grid.card-count-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   .main-list-collections__actions {
     margin-block-start: 4rem;
   }

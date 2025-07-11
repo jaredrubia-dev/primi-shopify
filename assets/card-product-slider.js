@@ -18,6 +18,10 @@ if (!customElements.get('card-product-slider')) {
           nextEl: '.swiper-button--next',
           prevEl: '.swiper-button--prev'
         },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
         breakpoints: {
           750: {
             slidesPerView: 3,
