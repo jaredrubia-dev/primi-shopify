@@ -25,11 +25,38 @@
         assign variants_option_one_arr = product.variants | map: 'option1'
         assign product_bar_variant_selects = ''
       -%}
-
+        
+      {% assign swatches = product.metafields.custom.product_color_swatch %}
+      {% assign swatch_checker = false %}
+      {% if swatches.value != blank %}
+        {% assign swatch_checker = true %}
+      {% endif %}
       {%- for option in product.options_with_values -%}
         <fieldset class="product-selector__buttons {% if product.has_only_default_variant %} hidden {% endif %}" data-input-wrapper>
           {%- if block.settings.variant_picker_layout != 'product-selector--stacked' -%}
             <legend class="product-selector__label">{{- option.name -}}</legend>
+            {% if swatches.value != blank and option.name == 'Colour' %}
+              {% for color_swatch in swatches.value %}
+                {% assign color_variant = color_swatch.variants.first %}
+                <div class="color-swatch">
+                  <a href="{{ color_swatch.url }}">{{ color_variant.option2 }}</a>
+                  {% comment %} {% assign swatchv2 = color_swatch.metafields.custom.product_color_swatch %}
+                  {% for colorv2 in swatchv2.value %}
+                    {% assign color_variant2 = colorv2.variants.first %}
+                    {% if color_variant2.option2 == color_variant.option2 %}
+                      {{ colorv2.variants.first.option2 }}
+                    {% endif %}
+                  {% endfor %} {% endcomment %}
+                </div>
+              {% endfor %}
+            {% elsif swatches.value != blank and option.name == 'Color' %}
+              {% for color_swatch in swatches.value %}
+                {% assign color_variant = color_swatch.variants.first %}
+                <div class="color-swatch">
+                  <a href="{{ color_swatch.url }}">{{ color_variant.option2 }}</a>
+                </div>
+              {% endfor %}
+            {% endif %}
           {%- endif -%}
           {%- liquid
             assign option_is_color = false
@@ -83,7 +110,7 @@
                         assign attr = attr | append: ' disabled'
                       endif
                     endunless
-                    render 'product-swatch', value: value, colors_for_check: color_codes, class: swatch_class, id: id, name: name, attr: attr, show_label: show_label, back_in_stock: back_in_stock
+                    render 'product-swatch', swatch_checker: swatch_checker, option: option, value: value, colors_for_check: color_codes, class: swatch_class, id: id, name: name, attr: attr, show_label: show_label, back_in_stock: back_in_stock
                   -%}
                 </li>
               {%- else -%}
@@ -172,7 +199,6 @@
           -%}
         </fieldset>
       {%- endfor -%}
-
       <script type="application/json">
         {{- product.variants | json -}}
       </script>

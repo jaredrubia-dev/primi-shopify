@@ -72,6 +72,11 @@
   border-block-start: 0.1rem solid var(--color-border-elements);
 }
 
+.cart__summary-actions button {
+  background: #161b29!important;
+  color: #fff!important;
+}
+
 .cart__summary-note {
   margin: 1.6rem 0 0;
   padding-block: 1.6rem;

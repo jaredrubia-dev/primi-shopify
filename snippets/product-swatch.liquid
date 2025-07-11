@@ -21,11 +21,21 @@
   assign name = name | default: 'Swatch'
   assign visually_hidden = visually_hidden | default: true
 -%}
+{% assign color_option = false %}
+{% if option.name == 'Colour' %}
+  {% assign color_option = true %}
+{% endif %}
+{% assign hide_option = false %}
+{% if swatch_checker and color_option %}
+  {% assign hide_option = true %}
+{% elsif swatch_checker == false %}
+  {% assign hide_option = false %}
+{% endif %}
 <input
   id="{{- id -}}"
   type="{{- input_type -}}"
   name="{{- name -}}"
-  class="{% unless visually_hidden == 'false' %}visually-hidden{% endunless %} {{ input_class }}"
+  class="{% unless visually_hidden == 'false' %}visually-hidden{% endunless %} {{ input_class }} {% if hide_option %}c-swatch-hide{% endif %}"
   {% if value != blank %}value="{{- value | escape -}}"{% endif %}
   data-color="{{- value | escape -}}"
   aria-label="{{- value | escape -}}"
@@ -36,7 +46,7 @@
 
 <label
   for="{{- id -}}"
-  class="swatch {{ settings.product_swatch_style }} swatch--{{ option_value_handle }} {{ class }}"
+  class="swatch {{ settings.product_swatch_style }} swatch--{{ option_value_handle }} {{ class }} {% if hide_option %}c-swatch-hide{% endif %}"
   {% unless colors_for_check contains option_value_handle %}
     style="background-color: {{ value | downcase | replace: ' ', '' }};"
   {% endunless %}

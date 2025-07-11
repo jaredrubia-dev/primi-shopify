@@ -36,7 +36,7 @@ Usage:
 
   assign loading_spinner = loading_spinner | default: false
 
-  assign button_style = button_style | default: 'button--filled-inversed'
+  assign button_style = button_style | default: 'button--filled'
 
   if button_style == 'default'
     assign button_style = 'button--filled-inversed'
@@ -57,6 +57,7 @@ Usage:
   endif
 
 -%}
+
 
 {%- if value -%}
   {%- if type == 'link' -%}

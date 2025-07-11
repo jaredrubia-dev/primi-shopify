@@ -83,6 +83,12 @@
   border-block-start: 0.1rem solid var(--color-border-elements);
 }
 
+.cart-drawer__summary-actions button,
+.cart-drawer__empty .button--filled:hover {
+  background: #161b29!important;
+  color: #fff!important;
+}
+
 .cart-drawer__empty-text {
   letter-spacing: 0;
   margin: 0 0 2.4rem;

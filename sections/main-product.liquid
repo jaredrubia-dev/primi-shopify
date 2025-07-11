@@ -382,7 +382,7 @@
                       assign value = 'products.product.add_to_cart' | t
                     endunless
 
-                    assign button_style = 'default'
+                    assign button_style = 'button--filled-inversed'
                     if block.settings.show_dynamic_checkout
                       assign button_style = 'solid'
                     endif
@@ -704,6 +704,27 @@
     assign seo_media = product.featured_media
   endif
 -%}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname;
+    const getColorSwatches = document.querySelectorAll('.product-selector__buttons .color-swatch a');
+
+    getColorSwatches.forEach((swatch) => {
+      const swatchUrl = swatch.getAttribute('href')
+      if (swatchUrl === currentPath) {
+        console.log('Match found — disabling swatch');
+        console.log(swatchUrl + ' - ' + currentPath);
+        swatch.addEventListener('click', function(e) {
+          e.preventDefault();
+        });
+
+        swatch.parentElement.classList.add('active-swatch');
+      }
+    });
+  });
+</script>
 
 <script type="application/ld+json">
   {{ product | structured_data }}

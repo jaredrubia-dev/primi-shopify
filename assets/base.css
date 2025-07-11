@@ -105,6 +105,15 @@
   --color-button-hover-outline: var(--color-button-filled-background);
   border: 1px solid var(--color-button-filled-background)!important;
 }
+.button--filled-v1 {
+  --color-button-text: var(--color-button-filled-text);
+  --color-button-background: var(--color-button-filled-background);
+  --color-button-outline: var(--color-button-filled-background);
+  --color-button-hover-text: var(--color-button-filled-background);
+  --color-button-hover-background: var(--color-button-filled-text);
+  --color-button-hover-outline: var(--color-button-filled-background);
+}
+
 .button--filled:hover {
   border: 1px solid var(--color-button-filled-text)!important;
 }
