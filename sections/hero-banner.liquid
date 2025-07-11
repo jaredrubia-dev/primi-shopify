@@ -135,7 +135,7 @@
 
         {%- if block.settings.title != blank or block.settings.content != blank or block.settings.button_text != blank and block.settings.button_url != blank -%}
           {% capture content_element %}
-            <div class="hero__content {{ hero_inner_setting_classes | strip }}">
+            <div class="hero__content {{ hero_inner_setting_classes | strip }} {% if block.settings.enable_mobile_position %}on-mobile-position-layout{% endif %} c-mobile-content-{{ block.settings.content_position_vertical_mobile }}">
               {%- if block.settings.subtitle != blank -%}
                 <p class="hero__subtitle" style="color:{{ block.settings.color_sub_heading }};">
                   {%- if block.settings.subtitle_url != blank -%}
@@ -156,7 +156,7 @@
                     }
                   }
                 </style>
-                <h3 class="hero__title" style="color: {{ block.settings.color_scheme_text_heading }};font-size: {{ block.settings.heading_size }}px; text-transform: {{ block.settings.heading_case }}">
+                <h3 class="hero__title" style="color: {{ block.settings.color_scheme_text_heading }};font-size: {{ block.settings.heading_size }}px; text-transform: {{ block.settings.heading_case }}; font-family: var(--font-{{ block.settings.heading_weight }}-family);">
                   {{- block.settings.title | escape -}}
                 </h3>
               {%- endif -%}
@@ -413,6 +413,22 @@
           "default": "uppercase"
         },
         {
+          "type": "select",
+          "id": "heading_weight",
+          "label": "Heading Weight",
+          "options": [
+            {
+              "value": "body",
+              "label": "Regular"
+            },
+            {
+              "value": "light",
+              "label": "Light"
+            },
+          ],
+          "default": "body"
+        },
+        {
           "type": "color",
           "id": "color_scheme_text_description",
           "label": "Description",
@@ -544,6 +560,33 @@
         {
           "type": "select",
           "id": "content_position_vertical",
+          "label": "t:sections.hero-banner.blocks.slide.settings.content_position_vertical.label",
+          "info": "t:sections.hero-banner.blocks.slide.settings.content_position_vertical.info",
+          "options": [
+            {
+              "value": "justify-start",
+              "label": "t:sections.hero-banner.blocks.slide.settings.content_position_vertical.options.top.label"
+            },
+            {
+              "value": "justify-center",
+              "label": "t:sections.hero-banner.blocks.slide.settings.content_position_vertical.options.center.label"
+            },
+            {
+              "value": "justify-end",
+              "label": "t:sections.hero-banner.blocks.slide.settings.content_position_vertical.options.bottom.label"
+            }
+          ],
+          "default": "justify-end"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_mobile_position",
+          "label": "Enable mobile position",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "content_position_vertical_mobile",
           "label": "t:sections.hero-banner.blocks.slide.settings.content_position_vertical.label",
           "info": "t:sections.hero-banner.blocks.slide.settings.content_position_vertical.info",
           "options": [

@@ -36,10 +36,10 @@ Usage:
 
   assign loading_spinner = loading_spinner | default: false
 
-  assign button_style = button_style | default: 'button--filled'
+  assign button_style = button_style | default: 'button--filled-inversed'
 
   if button_style == 'default'
-    assign button_style = 'button--filled'
+    assign button_style = 'button--filled-inversed'
   endif
 
   assign css = class | append: ' ' | append: button_style

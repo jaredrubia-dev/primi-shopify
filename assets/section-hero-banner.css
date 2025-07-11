@@ -74,6 +74,18 @@ html.no-js .hero__swiper-slide {
   margin-inline: auto;
   background-color: var(--color-body-background);
 }
+.hero-banner--full .hero__content.on-mobile-position-layout {
+  height: 100%;
+}
+.hero-banner--full .hero__content.on-mobile-position-layout.c-mobile-content-justify-start {
+  justify-content: start!important;
+}
+.hero-banner--full .hero__content.on-mobile-position-layout.c-mobile-content-justify-center {
+  justify-content: center!important;
+}
+.hero-banner--full .hero__content.on-mobile-position-layout.c-mobile-content-justify-end {
+  justify-content: end!important;
+}
 .hero-banner--full .hero__content > :first-child, .hero-banner--split .hero__content > :first-child {
   margin-block-start: 0;
 }
@@ -162,7 +174,7 @@ html.no-js .hero__swiper-slide {
 .hero__entry:last-child {
   margin-block-end: 0;
 }
-
+/* 
 .hero__inner--vertical-line .hero__content::after {
   --vertical-line-height: 4rem;
   content: '';
@@ -174,8 +186,8 @@ html.no-js .hero__swiper-slide {
   width: .1rem;
   height: var(--vertical-line-height);
   background-color: var(--color-heading-text);
-  opacity: 0.2;
-}
+  opacity: 0;
+} */
 
 @media screen and (min-width: 340px) {
   .hero-banner .hero__title {

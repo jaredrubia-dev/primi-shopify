@@ -103,6 +103,23 @@
   --color-button-hover-text: var(--color-button-filled-background);
   --color-button-hover-background: var(--color-button-filled-text);
   --color-button-hover-outline: var(--color-button-filled-background);
+  border: 1px solid var(--color-button-filled-background)!important;
+}
+.button--filled:hover {
+  border: 1px solid var(--color-button-filled-text)!important;
+}
+
+.button--filled-inversed {
+  --color-button-text: var(--color-button-outlined-text);
+  --color-button-background: var(--color-button-filled-text);
+  --color-button-outline: var(--color-button-filled-text);
+  --color-button-hover-text: var(--color-button-filled-text);
+  --color-button-hover-background: var(--color-button-outlined-text);
+  --color-button-hover-outline: var(--color-button-filled-background);
+  border: 1px solid var(--color-button-filled-text)!important;
+}
+.button--filled-inversed:hover {
+  border: 1px solid var(--color-button-outlined-text)!important;
 }
 
 .button--outlined,
