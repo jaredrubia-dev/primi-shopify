@@ -30,17 +30,18 @@
     align-items: center;
     justify-content: center;
     width: auto;
-    min-width: 3.2rem;
     font-size: 1rem;
     text-transform: uppercase;
     padding: 5px 8px;
-    height: 3.2rem;
-    border: 1px solid var(--color-border-elements);
     color: var(--color-heading-text);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
 }
 .product-selector__buttons .color-swatch a:hover,
 .product-selector__buttons .active-swatch a {
-  border: 1px solid var(--color-heading-text-default);
+  outline: 2px solid var(--color-border-elements);
+  outline-offset: 1px;
 }
 product-form .product-selector__submit:hover {
   background: #161b29!important;

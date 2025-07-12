@@ -28,6 +28,7 @@
         
       {% assign swatches = product.metafields.custom.product_color_swatch %}
       {% assign swatch_checker = false %}
+      {% assign hex_background = '' %}
       {% if swatches.value != blank %}
         {% assign swatch_checker = true %}
       {% endif %}
@@ -37,16 +38,17 @@
             <legend class="product-selector__label">{{- option.name -}}</legend>
             {% if swatches.value != blank and option.name == 'Colour' %}
               {% for color_swatch in swatches.value %}
+                {% assign hex_code = color_swatch.metafields.custom.color_hex %}
                 {% assign color_variant = color_swatch.variants.first %}
                 <div class="color-swatch">
-                  <a href="{{ color_swatch.url }}">{{ color_variant.option2 }}</a>
-                  {% comment %} {% assign swatchv2 = color_swatch.metafields.custom.product_color_swatch %}
-                  {% for colorv2 in swatchv2.value %}
-                    {% assign color_variant2 = colorv2.variants.first %}
-                    {% if color_variant2.option2 == color_variant.option2 %}
-                      {{ colorv2.variants.first.option2 }}
+                  {% if color_variant.option2 == color_variant.option2 %}
+                    {% if hex_code != blank %}
+                      {% assign hex_background = hex_code | replace: '[', '' | replace: ']', '' | replace: '"', '' %}
+                    {% else %}
+                      {% assign hex_background = '#474747' %}
                     {% endif %}
-                  {% endfor %} {% endcomment %}
+                    <a href="{{ color_swatch.url }}" style="background: {{ hex_background }};"></a>
+                  {% endif %}
                 </div>
               {% endfor %}
             {% elsif swatches.value != blank and option.name == 'Color' %}

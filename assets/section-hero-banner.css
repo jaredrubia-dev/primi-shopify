@@ -77,15 +77,7 @@ html.no-js .hero__swiper-slide {
 .hero-banner--full .hero__content.on-mobile-position-layout {
   height: 100%;
 }
-.hero-banner--full .hero__content.on-mobile-position-layout.c-mobile-content-justify-start {
-  justify-content: start!important;
-}
-.hero-banner--full .hero__content.on-mobile-position-layout.c-mobile-content-justify-center {
-  justify-content: center!important;
-}
-.hero-banner--full .hero__content.on-mobile-position-layout.c-mobile-content-justify-end {
-  justify-content: end!important;
-}
+
 .hero-banner--full .hero__content > :first-child, .hero-banner--split .hero__content > :first-child {
   margin-block-start: 0;
 }
@@ -196,6 +188,15 @@ html.no-js .hero__swiper-slide {
 }
 
 @media screen and (max-width: 749px) {
+  .hero-banner--full .hero__content.on-mobile-position-layout.c-mobile-content-justify-start {
+    justify-content: start;
+  }
+  .hero-banner--full .hero__content.on-mobile-position-layout.c-mobile-content-justify-center {
+    justify-content: center;
+  }
+  .hero-banner--full .hero__content.on-mobile-position-layout.c-mobile-content-justify-end {
+    justify-content: end;
+  }
   .hero__inner {
     --inner-height: 100svh;
     text-align: center;
