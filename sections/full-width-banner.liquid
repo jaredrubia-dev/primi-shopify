@@ -2,8 +2,12 @@
 
 {% style %}
   .section-{{ section.id }} .section-full-width-banner__subtitle,
-  .section-{{ section.id }} .section-full-width-banner__title {
-    color: {{ section.settings.text_color }};
+  .section-{{ section.id }} .section-full-width-banner__title > * {
+    color: {{ section.settings.text_color }}!important;
+  }
+  .section-{{ section.id }} .section-full-width-banner__title > * {
+    margin: 0;
+    line-height: 1.3;
   }
   .section-{{ section.id }} .section-full-width-banner__title {
     font-size: {{ section.settings.text_size_mobile }}px;
@@ -160,9 +164,11 @@
                   {%- continue -%}
                 {%- endif -%}
 
-                <h2 class="section-full-width-banner__title">
-                  {{- block.settings.title | escape -}}
-                </h2>
+                {% comment %} <h2 class="section-full-width-banner__title">
+                  {{- block.settings.title | escape | strip_html -}}
+                </h2> {% endcomment %}
+              <div class="section-full-width-banner__title">{{ block.settings.title }}</div>
+
               {%- when 'content' -%}
                 {%- if block.settings.content == blank -%}
                   {%- continue -%}
@@ -582,6 +588,7 @@
           "type": "richtext",
           "id": "title",
           "label": "t:sections.full-width-banner.blocks.title.settings.title.label",
+          "default": "<h2>HEADING TEXT</h2>"
         }
       ]
     },
