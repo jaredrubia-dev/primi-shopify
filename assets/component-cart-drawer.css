@@ -241,7 +241,7 @@ cart-drawer-items.is-loading .cart-drawer__spinner {
 
 @media screen and (min-width: 990px) {
   .cart-drawer__close {
-    width: 6.4rem;
+    width: 3.4rem;
     inset-inline-start: 4.8rem;
   }
 
