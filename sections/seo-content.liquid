@@ -16,14 +16,23 @@
     <div class="{% if section.settings.layout == 'boxed' %}container {% endif %} section-seo-content__wrapper">
       <div class="section-seo-content__inner">
         <div class="section-seo-content__content">
-          {%- if section.settings.title != blank -%}
-            <h2 class="section-seo-content__title">
-              {{- section.settings.title -}}
-            </h2>
-          {%- endif -%}
-          <div class="entry entry--list-padding-none">
-            {{- section.settings.content -}}
-          </div>
+          {% if section.settings.use_metafield %}
+              <h2 class="section-seo-content__title">
+                {{ collection.metafields.custom.collection_title }}
+              </h2>
+            <div class="entry entry--list-padding-none">
+              {{ collection.metafields.custom.collection_description | metafield_tag }}
+            </div>
+          {% else %}
+            {%- if section.settings.title != blank -%}
+              <h2 class="section-seo-content__title">
+                {{- section.settings.title -}}
+              </h2>
+            {%- endif -%}
+            <div class="entry entry--list-padding-none">
+              {{- section.settings.content -}}
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -34,6 +43,12 @@
 {
   "name": "t:sections.seo-content.name",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_metafield",
+      "label": "Use metafield",
+      "info": "If enabled, pull data from collection metafields"
+    },
     {
       "type": "select",
       "id": "layout",

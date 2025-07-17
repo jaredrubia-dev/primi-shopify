@@ -1,0 +1,132 @@
+<style>
+    .section-custom-trust-container {
+        width: 100%;
+        padding: {{ section.settings.padding_size }}px;
+        border-top: 1px solid {{ section.settings.color }};
+        border-bottom: 1px solid {{ section.settings.color }};
+        overflow-x: auto;
+    }
+    .section-custom-trust-container::-webkit-scrollbar {
+        display: none;
+    }
+    .section-custom-trust-container .section-trust-display {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .section-custom-trust-container .section-trust-display .icon-image-text {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin: 0 20px;
+    }
+    .section-custom-trust-container .section-trust-display .icon-image-text img {
+        max-width: 20px;
+        width: 100%;
+    }
+    .section-custom-trust-container .section-trust-display .icon-image-text span {
+        color: {{ section.settings.color_text_icon }};
+        white-space: nowrap;
+    }
+    .section-custom-trust-container .section-trust-display .icon-image-text svg {
+        min-width: 15px;
+    }
+    .section-custom-trust-container .section-trust-display .icon-image-text svg,
+    .section-custom-trust-container .section-trust-display .icon-image-text svg > * {
+        color: {{ section.settings.color_text_icon }};
+    }
+    @media screen and (min-width: 768px) {
+        .section-custom-trust-container .section-trust-display {
+            display: flex;
+            justify-content: center;
+        }
+    }
+</style>
+<div class="section-custom-trust-container">
+    <div class="section-trust-display">
+        {% for block in section.blocks %}
+            <div class="icon-image-text">
+                {% if block.settings.image and block.settings.icon_type =="image" %}
+                    <img src="{{ block.settings.image | img_url: '400x' }}" alt="">
+                {% else %}
+                    {{ block.settings.svg_data }}
+                {% endif %}
+                <span>{{ block.settings.text_description }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% schema %}
+{
+  "name": "Custom Trust Icon",
+  "class": "section-custom-trust-icon",
+  "settings": [
+    {
+        "type": "color",
+        "id": "color",
+        "label": "Section border color",
+        "default": "#121212"
+    },
+    {
+        "type": "color",
+        "id": "color_text_icon",
+        "label": "Text and Icon color",
+        "default": "#121212"
+    },
+    {
+        "type": "range",
+        "id": "padding_size",
+        "min": 5,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top and bottom",
+        "default": 20
+    },
+  ],
+  "blocks": [
+    {
+        "type": "Icon",
+        "name": "Icon",
+        "settings": [
+            {
+                "type": "select",
+                "id": "icon_type",
+                "label": "Icon type to use",
+                "options": [
+                    {
+                        "value": "image",
+                        "label": "Image"
+                    },
+                    {
+                        "value": "svg",
+                        "label": "SVG"
+                    }
+                ],
+                "default": "image"
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Icon"
+            },
+            {
+                "type": "textarea",
+                "id": "svg_data",
+                "label": "Icon in SVG"
+            },
+            {
+                "type": "text",
+                "id": "text_description",
+                "label": "Text"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Trust Icon"
+    }
+  ]
+}
+{% endschema %}

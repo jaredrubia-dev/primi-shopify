@@ -90,7 +90,6 @@
             {%- endif -%}
           </div>
         {%- endunless -%}
-
         <div class="grid__item section__buttons">
           {%- for block in section.blocks -%}
             {%- if block.settings.button_type == 'link' and block.settings.button_text != blank and block.settings.button_url != blank -%}
@@ -128,13 +127,55 @@
                       </h2>
 
                       <div class="rte">
-                        {%- if block.settings.drawer_page != blank -%}
-                          {{- block.settings.drawer_page.content -}}
-                        {%- elsif block.settings.drawer_richtext contains '[description]' -%}
-                          {{- product.description -}}
-                        {%- elsif block.settings.drawer_richtext != blank -%}
-                          {{- block.settings.drawer_richtext -}}
-                        {%- endif -%}
+                        {% if block.settings.use_metafield %}
+                          {% if product.metafields.custom.product_size %}
+                            {{ product.metafields.custom.product_size | metafield_tag }}
+                          {% else %}
+                            {%- if block.settings.drawer_page != blank -%}
+                              {{- block.settings.drawer_page.content -}}
+                            {%- elsif block.settings.drawer_richtext contains '[description]' -%}
+                              {{- product.description -}}
+                            {%- elsif block.settings.drawer_richtext != blank -%}
+                              {{- block.settings.drawer_richtext -}}
+                            {%- endif -%}
+                          {% endif %}
+                        {% else %}
+                          {%- if block.settings.drawer_page != blank -%}
+                            {{- block.settings.drawer_page.content -}}
+                          {%- elsif block.settings.drawer_richtext contains '[description]' -%}
+                            {{- product.description -}}
+                          {%- elsif block.settings.drawer_richtext != blank -%}
+                            {{- block.settings.drawer_richtext -}}
+                          {%- endif -%}
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </details>
+              </menu-drawer>
+            {%- elsif block.settings.button_type == 'drawer' and block.settings.button_text == 'Reviews' -%}
+              <menu-drawer class="section__drawer" {{ block.shopify_attributes }}>
+                <details id="Complementary-{{ forloop.index0 }}-drawer" class="drawer__container">
+                  <summary class="drawer__button drawer__button--text section__drawer-button link svg-color-inherit">
+                    <span class="drawer__button-text">
+                      {{- block.settings.button_text -}}
+                    </span>
+                    {% render 'icon-chevron-end' %}
+                  </summary>
+
+                  <div class="drawer__content js-drawer" id="Complementary-{{ forloop.index0 }}-menu-drawer" tabindex="-1">
+                    <button
+                      class="drawer__button-close button-reset no-js-hidden js-btn-close-drawer svg-color-inherit"
+                      aria-label="{{- 'accessibility.close' | t -}}"
+                      aria-controls="Complementary-{{ forloop.index0 }}-menu-drawer"
+                      aria-expanded="false"
+                    >
+                      {%- render 'icon-close' -%}
+                    </button>
+
+                    <div class="drawer__row drawer__row--gutter-sm">
+                      <div class="rte">
+                        {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
                       </div>
                     </div>
                   </div>
@@ -343,6 +384,12 @@
         {
           "type": "header",
           "content": "t:sections.complete-the-set.blocks.popup-drawer.settings.header_button.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_metafield",
+          "label": "Use metafield",
+          "info": "Pull sizing information from metafield"
         },
         {
           "type": "text",

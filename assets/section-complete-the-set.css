@@ -205,3 +205,17 @@
   position: relative;
   z-index: var(--z-header);
 }
+
+.section-complete-the-set .jdgm-rev-widg {
+  margin-top: 0;
+}
+.section-complete-the-set .jdgm-rev-widg__title {
+  font-size: 24px!important;
+}
+.section-complete-the-set .jdgm-widget-actions-wrapper a {
+  display: block!important;
+}
+.section-complete-the-set .jdgm-review-widget--medium .jdgm-histogram .jdgm-star,
+.section-complete-the-set :not(.jdgm-prev-badge__stars)>.jdgm-star {
+  font-size: 14px!important;
+}
