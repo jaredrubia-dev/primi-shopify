@@ -24,7 +24,7 @@ section .accordions__title {
 }
 
 .accordion__section {
-  padding: 3.2rem 0;
+  padding: 20px 0;
   border-block-end: 0.1rem solid var(--color-border-elements);
 }
 

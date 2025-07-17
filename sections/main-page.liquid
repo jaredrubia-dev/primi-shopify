@@ -1,7 +1,57 @@
 {{- 'main-page.css' | asset_url | stylesheet_tag -}}
+<style>
+  .size-toggle {
+    display: flex;
+    border: 1px solid #000;
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 16.2px;
+  }
 
+  .size-toggle button {
+    background: white;
+    width: 50%;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .size-toggle button.active {
+    background: black;
+    color: white;
+  }
+
+  .size-chart-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .size-chart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+
+  .size-chart-table th,
+  .size-chart-table td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    width: calc(100% / 6);
+    min-width: 103px;
+    text-align: center;
+  }
+
+  .unit-table {
+    display: none;
+  }
+
+  .unit-table.active {
+    display: table;
+  }
+</style>
 <section class="main-page {{ section.settings.color_scheme_text }} {{ section.settings.color_scheme_background }}">
-  <div class="container container--small">
+  <div class="container container--medium">
     {%- if section.settings.breadcrumbs -%}
       {%- render 'breadcrumbs', alignment: 'center', class: 'small-hide' -%}
     {%- endif -%}
@@ -25,9 +75,84 @@
         {%- endif -%}
       </div>
     {%- endif -%}
+    
+    {% assign data = page.metafields.custom.sizing.value.page.units %}
+    
+    {% if data != blank %}
+      <div class="size-chart-section">
+        <div class="size-toggle">
+          <button class="unit-btn active" data-unit="cm">cm</button>
+          <button class="unit-btn" data-unit="inches">in</button>
+        </div>
+
+          <!-- CM Table -->
+          <div class="size-chart-table-wrapper">
+            <table class="size-chart-table unit-table active" id="unit-cm">
+              <thead>
+                <tr>
+                  {% for col in data.cm.columns %}
+                    <th>{{ col }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in data.cm.data %}
+                  <tr>
+                    {% for col in data.cm.columns %}
+                      <td>{{ row[col] }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <!-- Inches Table -->
+            <table class="size-chart-table unit-table" id="unit-inches">
+              <thead>
+                <tr>
+                  {% for col in data.inches.columns %}
+                    <th>{{ col }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in data.inches.data %}
+                  <tr>
+                    {% for col in data.inches.columns %}
+                      <td>{{ row[col] }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+    {% endif %}
   </div>
 </section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.unit-btn');
+    const tables = document.querySelectorAll('.unit-table');
 
+    buttons.forEach(button => {
+      button.addEventListener('click', function () {
+        const unit = this.getAttribute('data-unit');
+
+        buttons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+
+        tables.forEach(table => {
+          if (table.id === 'unit-' + unit) {
+            table.classList.add('active');
+          } else {
+            table.classList.remove('active');
+          }
+        });
+      });
+    });
+  });
+</script>
 {% schema %}
 {
   "name": "t:sections.main-page.name",

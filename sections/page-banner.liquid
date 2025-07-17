@@ -1,4 +1,14 @@
 {{- 'page-banner.css' | asset_url | stylesheet_tag -}}
+<style>
+    #shopify-section-{{ section.id }} .page-banner__wrapper .page-banner__title {
+      font-size: {{ section.settings.heading_size_mobile }}px!important;
+    }
+    @media screen and (min-width: 768px) {
+      #shopify-section-{{ section.id }} .page-banner__wrapper .page-banner__title {
+        font-size: {{ section.settings.heading_size }}px!important;
+      }
+    }
+</style>
 {% if section.settings.search_bar %}
   <script src="{{- 'faq-tile.js' | asset_url -}}" defer="defer"></script>
   {% style %}
@@ -288,6 +298,26 @@
       "type": "text",
       "id": "title",
       "label": "t:sections.page-banner.settings.title.label"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 12,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size desktop",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 12,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size mobile",
+      "default": 28
     },
     {
       "type": "richtext",
