@@ -120,6 +120,8 @@
     }
   {%- endif -%}
 {% endstyle %}
+{% assign imageBanner = page.metafields.custom.page_image_banner.value %}
+{% assign imageBannerMobile = page.metafields.custom.page_image_banner_mobile.value %}
 <section class="page-banner center js-animation-fade-in {{ section_additional_classes }} media-position--{{ section.settings.media_position }}{% if section.index != 1 %} js-animation-fade-in{% endif %}{% if enable_transparent_header %} header-is-transparent{% endif %}">
   <div class="{% if section.settings.search_bar %}container-search{% endif %} container">
     {%- if has_media -%}
@@ -128,7 +130,7 @@
           {%- render 'external-video', video: section_video_external, title: section.settings.heading, controls: section.settings.show_controls_on_video -%}
         {%- elsif section_video != blank -%}
           {{- section_video | video_tag: image_size: '1440x', loop: true, autoplay: true, muted: true, controls: section.settings.show_controls_on_video -}}
-        {%- elsif section_image -%}
+        {%- elsif section_image and imageBanner == blank -%}
           {%- render 'image', image: section_image, section_index: section.index -%}
         {%- endif -%}
       </div>
@@ -144,6 +146,16 @@
         </div>
       {%- endif -%}
     {%- endif -%}
+    {% if imageBanner %}
+      <div class="section-page-banner__media media{% if has_mobile_media %} small-hide{% endif %}{% if section.settings.image_blur_effect %} media--overlay-blur{%- endif -%}">
+        {%- render 'image', image: imageBanner, section_index: section.index -%}
+      </div>
+    {% endif %}
+    {% if imageBannerMobile %}
+      <div class="section-page-banner__media media small-up-hide media--overlay">
+        {%- render 'image', image: imageBannerMobile, section_index: section.index, image_for_mobile: true -%}
+      </div>
+    {% endif %}
     {%- if settings.enable_breadcrumbs_on_other_pages and section.settings.enable_breadcrumbs -%}
       {%- render 'breadcrumbs', alignment: settings.breadcrumbs_alignment, class: 'small-hide' -%}
     {%- endif -%}

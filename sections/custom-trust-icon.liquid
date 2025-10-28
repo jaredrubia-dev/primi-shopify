@@ -1,61 +1,144 @@
 <style>
     .section-custom-trust-container {
         width: 100%;
-        padding: {{ section.settings.padding_size }}px;
+        padding: {{ section.settings.padding_size }}px 0;
         border-top: 1px solid {{ section.settings.color }};
         border-bottom: 1px solid {{ section.settings.color }};
-        overflow-x: auto;
+        overflow: hidden;
+        position: relative;
     }
-    .section-custom-trust-container::-webkit-scrollbar {
-        display: none;
+
+    .section-trust-display-outer {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
     }
-    .section-custom-trust-container .section-trust-display {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    .section-custom-trust-container .section-trust-display .icon-image-text {
+
+    .section-trust-display-inner {
         display: flex;
-        gap: 10px;
-        align-items: center;
-        margin: 0 20px;
+        flex-wrap: nowrap;
+        width: max-content;
     }
-    .section-custom-trust-container .section-trust-display .icon-image-text img {
+
+    .marquee-content {
+        display: flex;
+    }
+
+    .icon-image-text {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 0 20px;
+    }
+
+    .icon-image-text img {
         max-width: 20px;
         width: 100%;
+        margin-right: 10px;
     }
-    .section-custom-trust-container .section-trust-display .icon-image-text span {
+
+    .icon-image-text span {
         color: {{ section.settings.color_text_icon }};
         white-space: nowrap;
+        line-height: 1;
+        text-transform: unset;
     }
-    .section-custom-trust-container .section-trust-display .icon-image-text svg {
+
+    .icon-image-text svg {
         min-width: 15px;
+        margin-right: 10px;
     }
-    .section-custom-trust-container .section-trust-display .icon-image-text svg,
-    .section-custom-trust-container .section-trust-display .icon-image-text svg > * {
+
+    .icon-image-text svg,
+    .icon-image-text svg > * {
         color: {{ section.settings.color_text_icon }};
     }
+
+    /* Desktop styles */
+    .desktop-only {
+        display: none;
+    }
+
     @media screen and (min-width: 768px) {
-        .section-custom-trust-container .section-trust-display {
+        .mobile-only {
+            display: none;
+        }
+
+        .desktop-only {
             display: flex;
             justify-content: center;
         }
     }
+
+    /* Mobile Marquee */
+    @media screen and (max-width: 767px) {
+        .section-trust-display-inner {
+            animation: scroll-left {{ section.settings.speed_rotate }}s linear infinite;
+        }
+    }
+
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
 </style>
+
 <div class="section-custom-trust-container">
-    <div class="section-trust-display">
-        {% for block in section.blocks %}
-            <div class="icon-image-text">
-                {% if block.settings.image and block.settings.icon_type =="image" %}
-                    <img src="{{ block.settings.image | img_url: '400x' }}" alt="">
-                {% else %}
-                    {{ block.settings.svg_data }}
-                {% endif %}
-                <span>{{ block.settings.text_description }}</span>
+    <div class="section-trust-display-outer">
+
+        <!-- Desktop Static View -->
+        <div class="desktop-only">
+            <div class="section-trust-display-inner">
+                {% for block in section.blocks %}
+                    <div class="icon-image-text">
+                        {% if block.settings.image and block.settings.icon_type == "image" %}
+                            <img src="{{ block.settings.image | img_url: '400x' }}" alt="">
+                        {% else %}
+                            {{ block.settings.svg_data }}
+                        {% endif %}
+                        <span style="text-transform: {{ block.settings.text_case }};">{{ block.settings.text_description }}</span>
+                    </div>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
+
+        <!-- Mobile Marquee -->
+        <div class="mobile-only">
+            <div class="section-trust-display-inner">
+                <div class="marquee-content">
+                    {% for block in section.blocks %}
+                        <div class="icon-image-text">
+                            {% if block.settings.image and block.settings.icon_type == "image" %}
+                                <img src="{{ block.settings.image | img_url: '400x' }}" alt="">
+                            {% else %}
+                                {{ block.settings.svg_data }}
+                            {% endif %}
+                            <span style="text-transform: {{ block.settings.text_case }};">{{ block.settings.text_description }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="marquee-content">
+                    {% for block in section.blocks %}
+                        <div class="icon-image-text">
+                            {% if block.settings.image and block.settings.icon_type == "image" %}
+                                <img src="{{ block.settings.image | img_url: '400x' }}" alt="">
+                            {% else %}
+                                {{ block.settings.svg_data }}
+                            {% endif %}
+                            <span style="text-transform: {{ block.settings.text_case }};">{{ block.settings.text_description }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+
 {% schema %}
 {
   "name": "Custom Trust Icon",
@@ -83,6 +166,16 @@
         "label": "Padding top and bottom",
         "default": 20
     },
+    {
+        "type": "range",
+        "id": "speed_rotate",
+        "label": "Rotation Speed",
+        "min": 5,
+        "max": 30,
+        "step": 1,
+        "default": 15,
+        "info": "The higher the number is, the lower speed applies."
+    }
   ],
   "blocks": [
     {
@@ -119,7 +212,31 @@
                 "type": "text",
                 "id": "text_description",
                 "label": "Text"
-            }
+            },
+            {
+                "type": "select",
+                "id": "text_case",
+                "label": "Text Case",
+                "options": [
+                    {
+                    "value": "unset",
+                    "label": "Default"
+                    },
+                    {
+                    "value": "capitalize",
+                    "label": "Capitalize"
+                    },
+                    {
+                    "value": "uppercase",
+                    "label": "Uppercase"
+                    },
+                    {
+                    "value": "lowercase",
+                    "label": "Lowercase"
+                    }
+                ],
+                "default": "uppercase"
+            },
         ]
     }
   ],
