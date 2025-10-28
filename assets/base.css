@@ -153,6 +153,11 @@
 }
 
 @media screen and (min-width: 750px) {
+  .template--index .button--normalcase,
+  .template--index .button--capitalize,
+  .template--index .button--lowercase {
+    --button-font-size: 13px;
+  }
   .text-colors-default-small-up {
     --color-button-hover-text: var(--color-button-text-inverse);
     --color-heading-text: var(--color-heading-text-default);

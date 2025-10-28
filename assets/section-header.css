@@ -110,6 +110,9 @@ a.header__nav-link {
   .header {
     --header-vertical-padding: 2rem;
   }
+  a.header__nav-link {
+    font-size: 13px;
+  }
 }
 
 

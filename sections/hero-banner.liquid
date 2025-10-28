@@ -156,9 +156,9 @@
                     }
                   }
                 </style>
-                <h3 class="hero__title" style="color: {{ block.settings.color_scheme_text_heading }};font-size: {{ block.settings.heading_size }}px; text-transform: {{ block.settings.heading_case }}; font-family: var(--font-{{ block.settings.heading_weight }}-family);">
+                <h1 class="hero__title" style="color: {{ block.settings.color_scheme_text_heading }};font-size: {{ block.settings.heading_size }}px; text-transform: {{ block.settings.heading_case }}; font-family: var(--font-{{ block.settings.heading_weight }}-family);">
                   {{- block.settings.title | escape -}}
-                </h3>
+                </h1>
               {%- endif -%}
 
               {%- if block.settings.content != blank -%}

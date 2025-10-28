@@ -53,6 +53,9 @@ html.no-js .bar__swiper .swiper-wrapper {
     flex-direction: row;
     gap: 0.8rem;
   }
+  .bar p {
+    font-size: 13px;
+  }
 }
 
 announcement-bar-dropdown {

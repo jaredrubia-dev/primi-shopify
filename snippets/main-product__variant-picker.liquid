@@ -36,29 +36,39 @@
         <fieldset class="product-selector__buttons {% if product.has_only_default_variant %} hidden {% endif %}" data-input-wrapper>
           {%- if block.settings.variant_picker_layout != 'product-selector--stacked' -%}
             <legend class="product-selector__label">{{- option.name -}}</legend>
-            {% if swatches.value != blank and option.name == 'Colour' %}
-              {% for color_swatch in swatches.value %}
-                {% assign hex_code = color_swatch.metafields.custom.color_hex %}
-                {% assign color_variant = color_swatch.variants.first %}
-                <div class="color-swatch">
-                  {% if color_variant.option2 == color_variant.option2 %}
-                    {% if hex_code != blank %}
-                      {% assign hex_background = hex_code | replace: '[', '' | replace: ']', '' | replace: '"', '' %}
-                    {% else %}
-                      {% assign hex_background = '#474747' %}
+            <div class="swatch-link-container">
+              {% if swatches.value != blank and option.name == 'Colour' %}
+                {% for color_swatch in swatches.value %}
+                  {% assign hex_code = color_swatch.metafields.custom.color_hex %}
+                  {% assign color_variant = color_swatch.variants.first %}
+                  <div class="color-swatch">
+                    {% if color_variant.option2 == color_variant.option2 %}
+                      {% if hex_code != blank %}
+                        {% assign hex_background = hex_code | replace: '[', '' | replace: ']', '' | replace: '"', '' %}
+                      {% else %}
+                        {% assign hex_background = '#474747' %}
+                      {% endif %}
+                      <a href="{{ color_swatch.url }}" style="background: {{ hex_background }}; {% if hex_background == '#FFFFFF' or hex_background == '#ffffff' %}border: 1px solid #121212;{% endif %}"></a>
                     {% endif %}
-                    <a href="{{ color_swatch.url }}" style="background: {{ hex_background }};"></a>
-                  {% endif %}
-                </div>
-              {% endfor %}
-            {% elsif swatches.value != blank and option.name == 'Color' %}
-              {% for color_swatch in swatches.value %}
-                {% assign color_variant = color_swatch.variants.first %}
-                <div class="color-swatch">
-                  <a href="{{ color_swatch.url }}">{{ color_variant.option2 }}</a>
-                </div>
-              {% endfor %}
-            {% endif %}
+                  </div>
+                {% endfor %}
+              {% elsif swatches.value != blank and option.name == 'Color' %}
+                {% for color_swatch in swatches.value %}
+                  {% assign hex_code = color_swatch.metafields.custom.color_hex %}
+                  {% assign color_variant = color_swatch.variants.first %}
+                  <div class="color-swatch">
+                    {% if color_variant.option2 == color_variant.option2 %}
+                      {% if hex_code != blank %}
+                        {% assign hex_background = hex_code | replace: '[', '' | replace: ']', '' | replace: '"', '' %}
+                      {% else %}
+                        {% assign hex_background = '#474747' %}
+                      {% endif %}
+                      <a href="{{ color_swatch.url }}" style="background: {{ hex_background }}; {% if hex_background == '#FFFFFF' or hex_background == '#ffffff' %}border: 1px solid #121212;{% endif %}"></a>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            </div>
           {%- endif -%}
           {%- liquid
             assign option_is_color = false
@@ -174,6 +184,58 @@
                       <div class="size-guide-container">
                         <div class="size-guide-table-wrapper">
                           {{- block.settings.size_guide_page.content -}}
+                          {% assign data = block.settings.size_guide_page.metafields.custom.sizing.value.page.units %}
+                                          
+                            {% if data != blank %}
+                              <div class="size-chart-section">
+                                <div class="size-toggle">
+                                  <button class="unit-btn active" data-unit="cm">cm</button>
+                                  <button class="unit-btn" data-unit="inches">in</button>
+                                </div>
+                        
+                                  <!-- CM Table -->
+                                  <div class="size-chart-table-wrapper">
+                                    <table class="size-chart-table unit-table active" id="unit-cm">
+                                      <thead>
+                                        <tr>
+                                          {% for col in data.cm.columns %}
+                                            <th>{{ col }}</th>
+                                          {% endfor %}
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {% for row in data.cm.data %}
+                                          <tr>
+                                            {% for col in data.cm.columns %}
+                                              <td>{{ row[col] }}</td>
+                                            {% endfor %}
+                                          </tr>
+                                        {% endfor %}
+                                      </tbody>
+                                    </table>
+                        
+                                    <!-- Inches Table -->
+                                    <table class="size-chart-table unit-table" id="unit-inches">
+                                      <thead>
+                                        <tr>
+                                          {% for col in data.inches.columns %}
+                                            <th>{{ col }}</th>
+                                          {% endfor %}
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {% for row in data.inches.data %}
+                                          <tr>
+                                            {% for col in data.inches.columns %}
+                                              <td>{{ row[col] }}</td>
+                                            {% endfor %}
+                                          </tr>
+                                        {% endfor %}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                              </div>
+                            {% endif %}
                         </div>
                       </div>
                     </div>

@@ -59,6 +59,10 @@
       <h1 class="main-page__title h1 text-{{ section.settings.title_alignment }}">
         {{- page.title | escape -}}
       </h1>
+    {% else %}
+      <h1 class="main-page__title h1 text-{{ section.settings.title_alignment }}">
+        {{ section.settings.page_title }}
+      </h1>
     {%- endif -%}
       <div class="main-page__content font-size-md rte">
         {{- page.content -}}
@@ -163,6 +167,12 @@
       "label": "t:sections.main-page.settings.show_page_title.label",
       "info": "t:sections.main-page.settings.show_page_title.info",
       "default": true
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "info": "This title will be use if Show page title is disabled."
     },
     {
       "type": "select",
