@@ -76,6 +76,20 @@
     {%- if settings.image_snippet != 'native' -%}
       <script src="{{- 'lazysizes.min.js' | asset_url -}}" defer="defer"></script>
     {%- endif -%}
+    
+    <script>tolstoyAppKey="12333754-d4de-4ed4-9dcd-67a47673ae49"</script>
+    <script type="module"
+      async
+      src="https://widget.gotolstoy.com/we/widget.js"
+    >
+    </script>
+    <script
+      type="text/javascript"
+      nomodule
+      async
+      src="https://widget.gotolstoy.com/widget/widget.js"
+    ></script>
+    <script type="module" src="https://play.gotolstoy.com/widget-v2/widget.js"></script>
   </head>
 
   <body class="template template--{{ template.name }}{% if template.suffix %} template--{{- template.suffix -}}{% endif %} template-theme--{{ settings.theme_style_name }} is-at-top">
